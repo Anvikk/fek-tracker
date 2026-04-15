@@ -1040,7 +1040,7 @@ function checkScheduledReports(){
   const now=new Date();
   const today=now.toISOString().split('T')[0];
   const hour=now.getHours();
-  if(hour>=22&&state.lastDailyReport!==today){
+ if (false) {
     sendReport('daily');
     state.lastDailyReport=today;
     STATE_REF.update({lastDailyReport:today});
