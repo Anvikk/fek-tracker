@@ -462,43 +462,94 @@ let _listenerActive=false;
 let _ignoreNextUpdate=false;
  
 // ── LOAD / SNAPSHOT ──────────────────────────────────────────
+// ── LOCAL BACKUP (localStorage) ──────────────────────────────
+// Saves a copy in the browser so data survives Firebase failures
+const LOCAL_KEY='fekTracker_localBackup';
+function saveLocal(data){
+  try{
+    // Strip screenshots to keep localStorage small — they're already in Firebase
+    const slim=JSON.parse(JSON.stringify(data));
+    (slim.sessions||[]).forEach(s=>{s.screenshots=[];});
+    localStorage.setItem(LOCAL_KEY, JSON.stringify({ts:Date.now(),data:slim}));
+  }catch(e){console.warn('Local backup failed:',e);}
+}
+function loadLocal(){
+  try{
+    const raw=localStorage.getItem(LOCAL_KEY);
+    if(!raw) return null;
+    const parsed=JSON.parse(raw);
+    return parsed.data||null;
+  }catch(e){return null;}
+}
+ 
+// ── FIREBASE PROMISE WITH TIMEOUT ────────────────────────────
+function withTimeout(promise, ms, label){
+  return Promise.race([
+    promise,
+    new Promise((_,reject)=>setTimeout(()=>reject(new Error(`${label} timed out after ${ms/1000}s`)),ms))
+  ]);
+}
+ 
 async function loadState(){
   try{
-    const snapshot=await STATE_REF.once('value');
+    const snapshot=await withTimeout(STATE_REF.once('value'), 15000, 'Load');
     if(snapshot.exists()){
       applySnapshot(snapshot.val());
+      saveLocal(state); // fresh local copy on load
+    } else {
+      // Try local backup first
+      const local=loadLocal();
+      if(local){
+        applySnapshot(local);
+        showBanner('error','⚠ Firebase empty — loaded from local backup. Save to sync.');
+      } else {
+        state.schedule=DEFAULT_SCHEDULE;
+        state.students=DEFAULT_STUDENTS;
+        state.slotSeats=DEFAULT_SEATS;
+      }
+    }
+  } catch(e){
+    console.error('Load error:',e);
+    // Fall back to local backup if Firebase unreachable
+    const local=loadLocal();
+    if(local){
+      applySnapshot(local);
+      showBanner('error','⚠ Firebase unreachable — showing local backup. Check connection.');
     } else {
       state.schedule=DEFAULT_SCHEDULE;
       state.students=DEFAULT_STUDENTS;
       state.slotSeats=DEFAULT_SEATS;
+      showBanner('error','⚠ Could not load — check your internet connection');
     }
-  } catch(e){
-    console.error('Load error:',e);
-    state.schedule=DEFAULT_SCHEDULE;
-    state.students=DEFAULT_STUDENTS;
-    state.slotSeats=DEFAULT_SEATS;
-    showBanner('error','⚠ Could not load — check Firebase config');
   }
   checkScheduledReports();
   renderAll();
   requestAccess('tracker', document.querySelector('.nav-item'));
  
+  // Auto-save every 2 minutes if there are unsaved changes
+  setInterval(()=>{
+    if(_hasUnsaved){
+      console.log('Auto-saving…');
+      saveAll(true); // true = silent auto-save
+    }
+  }, 2 * 60 * 1000);
+ 
+  // Warn before closing tab with unsaved changes
+  window.addEventListener('beforeunload', e=>{
+    if(_hasUnsaved){
+      e.preventDefault();
+      e.returnValue='You have unsaved changes. Are you sure you want to leave?';
+      return e.returnValue;
+    }
+  });
+ 
   // Real-time listener — only applies remote updates from OTHER devices.
-  // If we just saved ourselves, we skip the update.
   if(!_listenerActive){
     _listenerActive=true;
     STATE_REF.on('value', snapshot=>{
       if(!snapshot.exists()) return;
-      // Skip if this is our own save bouncing back
-      if(_ignoreNextUpdate){
-        _ignoreNextUpdate=false;
-        return;
-      }
-      // Only sync if we have NO unsaved work (don't clobber)
-      if(!_hasUnsaved){
-        applySnapshot(snapshot.val());
-        renderAll();
-      }
+      if(_ignoreNextUpdate){_ignoreNextUpdate=false;return;}
+      if(!_hasUnsaved){applySnapshot(snapshot.val());renderAll();}
     });
   }
 }
@@ -515,28 +566,42 @@ function applySnapshot(d){
   state.lastDailyReport=d.lastDailyReport||'';
 }
  
-async function saveAll(){
+async function saveAll(silent=false){
   const btn=document.getElementById('main-save-btn');
   if(btn)btn.disabled=true;
-  showBanner('saving','Saving your data…');
+  if(!silent) showBanner('saving','Saving your data...');
+ 
+  // Always save locally first - instant, never fails
+  saveLocal(state);
+ 
   try{
-    // Backup before overwrite
-    const prev=await STATE_REF.once('value');
+    // Backup existing Firebase data before overwrite (10s timeout)
+    const prev=await withTimeout(STATE_REF.once('value'), 10000, 'Backup read');
     if(prev.exists()&&prev.val().sessions&&prev.val().sessions.length){
-      await db.ref('fekTracker/backup').set(prev.val());
+      await withTimeout(db.ref('fekTracker/backup').set(prev.val()), 10000, 'Backup write');
     }
-    _ignoreNextUpdate=true; // our own write — don't re-apply
-    await STATE_REF.set(state);
+    // Save to Firebase - 30 second timeout
+    _ignoreNextUpdate=true;
+    await withTimeout(STATE_REF.set(state), 30000, 'Save');
     clearUnsaved();
-    showBanner('success','✅ Saved successfully — all devices will sync');
+    if(!silent) showBanner('success','Saved - all devices will sync');
+    else showBanner('success','Auto-saved');
   } catch(e){
     console.error('Save error:',e);
-    showBanner('error','❌ Save FAILED — check your connection and try again');
     _ignoreNextUpdate=false;
+    const isTimeout=e.message&&e.message.includes('timed out');
+    if(!silent){
+      showBanner('error', isTimeout
+        ? 'Save timed out - data saved locally. Check connection and try again.'
+        : 'Save FAILED - data saved locally. Check connection and try again.'
+      );
+    }
   } finally {
     if(btn)btn.disabled=false;
   }
 }
+ 
+ 
  
 function toggleSidebar(){
   document.querySelector('.sidebar').classList.toggle('open');
@@ -1365,4 +1430,3 @@ loadState();
 </script>
 </body>
 </html>
- 
