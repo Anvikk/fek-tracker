@@ -12,7 +12,7 @@
 :root{--bg:#f7f6f3;--surface:#fff;--surface2:#f0efe9;--border:#e2e0d8;--border2:#d0cec4;--text:#1c1b18;--text2:#6b6860;--text3:#9e9c96;--accent:#2d5be3;--accent-bg:#eef1fc;--accent-text:#1a3baa;--green:#1a7a4a;--green-bg:#e8f5ee;--red:#c0392b;--red-bg:#fdecea;--radius:10px;--radius-sm:6px;--shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);--shadow-md:0 4px 12px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
- 
+
 /* ── SAVE BANNER ── */
 #save-banner{
   position:fixed;top:0;left:0;right:0;z-index:500;
@@ -29,11 +29,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 #save-banner .banner-msg{display:flex;align-items:center;gap:8px}
 #save-banner .banner-dismiss{background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:4px;padding:3px 10px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;flex-shrink:0}
 #save-banner .banner-dismiss:hover{background:rgba(255,255,255,.35)}
- 
+
 /* ── UNSAVED DOT ── */
 .unsaved-dot{display:none;width:8px;height:8px;border-radius:50%;background:#e67e22;flex-shrink:0}
 .unsaved-dot.visible{display:inline-block}
- 
+
 .app-shell{display:flex;min-height:100vh}
 .sidebar{width:220px;background:var(--surface);border-right:1px solid var(--border);padding:24px 16px;flex-shrink:0;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;overflow-y:auto}
 .main{flex:1;padding:28px 32px;overflow-y:auto}
@@ -50,7 +50,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .save-btn:disabled{opacity:.5;cursor:not-allowed}
 .revert-btn{width:100%;padding:8px;background:none;color:var(--text3);border:1px solid var(--border2);border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;margin-top:6px}
 .revert-btn:hover{background:var(--red-bg);color:var(--red);border-color:#f5c0bb}
- 
+
 .page{display:none}.page.active{display:block}
 .page-header{margin-bottom:24px}
 .page-title{font-size:22px;font-weight:600}
@@ -76,7 +76,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .seat-select{font-size:13px;padding:7px 10px;border:1px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);font-family:'DM Sans',sans-serif;width:100%}
 .seat-select:focus{outline:none;border-color:var(--accent)}
 .sessions-list{display:flex;flex-direction:column;gap:10px}
- 
+
 /* ── SESSION CARD ── */
 .session-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
 .session-summary{padding:12px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:background .12s;user-select:none}
@@ -89,29 +89,29 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .session-expand-btn.open{transform:rotate(180deg)}
 .session-detail{display:none;border-top:1px solid var(--border);padding:14px 16px;background:#fafaf8}
 .session-detail.open{display:block}
- 
+
 .session-top{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;margin-bottom:12px}
- 
+
 /* ── CONTENT FIELDS — always visible both types ── */
 .content-row{display:flex;gap:10px;flex-wrap:wrap;flex:1;min-width:200px}
 .content-col{display:flex;flex-direction:column;gap:6px}
 .content-col-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3)}
 .content-type-fields{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .content-field-item{min-width:90px}
- 
+
 .date-field{width:150px;flex-shrink:0}
 .att-section{width:100%}
 .field-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:5px}
 .field-select,.field-input{width:100%;font-size:13px;padding:7px 10px;border:1px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);font-family:'DM Sans',sans-serif}
 .field-select:focus,.field-input:focus{outline:none;border-color:var(--accent)}
 input[type=date].field-input{font-family:'DM Mono',monospace}
- 
+
 /* clicking a field label switches active type */
 .content-col.active-type .content-col-label{color:var(--accent-text);font-weight:700}
 .content-col.active-type .field-select{border-color:var(--accent);background:var(--accent-bg)}
 .content-col.inactive-type{opacity:.45}
 .content-col.inactive-type .field-select{cursor:pointer}
- 
+
 .attendance-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:4px}
 .att-cell{border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 10px;display:flex;align-items:center;gap:8px;background:var(--surface2)}
 .att-cell.present{background:var(--green-bg);border-color:#a8dfc0}
@@ -134,13 +134,13 @@ input[type=date].field-input{font-family:'DM Mono',monospace}
 .btn-ghost:hover{color:var(--red)}
 .btn-add-session{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:9px;border:1.5px dashed var(--border2);border-radius:var(--radius-sm);font-size:13px;color:var(--text3);background:none;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:10px;transition:all .15s}
 .btn-add-session:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-bg)}
- 
+
 /* show-more sessions */
 .show-more-btn{width:100%;padding:8px;background:none;border:1px solid var(--border2);border-radius:var(--radius-sm);font-size:12px;color:var(--text3);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;margin-top:4px}
 .show-more-btn:hover{background:var(--surface2);color:var(--text2);border-color:var(--border2)}
 .session-hidden{display:none}
 .session-hidden.revealed{display:block}
- 
+
 .students-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
 .student-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
 .student-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
@@ -240,7 +240,7 @@ input[type=date].field-input{font-family:'DM Mono',monospace}
 </style>
 </head>
 <body>
- 
+
 <!-- SAVE BANNER -->
 <div id="save-banner">
   <div class="banner-msg">
@@ -249,7 +249,7 @@ input[type=date].field-input{font-family:'DM Mono',monospace}
   </div>
   <button class="banner-dismiss" onclick="dismissBanner()">✕ Dismiss</button>
 </div>
- 
+
 <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
 <div class="mobile-topbar">
   <button class="hamburger" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
@@ -260,7 +260,7 @@ input[type=date].field-input{font-family:'DM Mono',monospace}
   <button class="save-btn" onclick="saveAll()">💾 Save</button>
   <button class="revert-btn" onclick="revertAll()">↩ Revert</button>
 </div>
- 
+
 <div class="app-shell">
   <aside class="sidebar">
     <div class="logo"><div class="logo-dot"></div>FEK Tracker</div>
@@ -279,7 +279,7 @@ input[type=date].field-input{font-family:'DM Mono',monospace}
       <button class="revert-btn" onclick="revertAll()">↩ Revert</button>
     </div>
   </aside>
- 
+
   <main class="main">
     <div id="page-tracker" class="page active">
       <div class="page-header"><div class="page-title">Class tracker</div><div class="page-sub">Log sessions, attendance and lesson progress</div></div>
@@ -311,7 +311,7 @@ input[type=date].field-input{font-family:'DM Mono',monospace}
     </div>
   </main>
 </div>
- 
+
 <div class="pw-overlay" id="pw-overlay">
   <div class="pw-box">
     <div class="pw-icon">🔒</div>
@@ -323,15 +323,15 @@ input[type=date].field-input{font-family:'DM Mono',monospace}
     <button class="btn" style="width:100%" onclick="closePwOverlay()">Cancel</button>
   </div>
 </div>
- 
+
 <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal-box" id="modal-box"></div>
 </div>
- 
+
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <img id="lightbox-img" src="" alt="">
 </div>
- 
+
 <script>
 // ── FIREBASE CONFIG ──────────────────────────────────────────
 const FIREBASE_CONFIG = {
@@ -346,16 +346,16 @@ const FIREBASE_CONFIG = {
 firebase.initializeApp(FIREBASE_CONFIG);
 const db = firebase.database();
 const STATE_REF = db.ref('fekTracker/state');
- 
+
 const EMAILJS_PUBLIC_KEY='4pDt9Gbl5n26aJBJT';
 const EMAILJS_SERVICE_ID='service_2fje114';
 const EMAILJS_TEMPLATE_ID='template_6q35gui';
 const REPORT_EMAILS=['petrpesekpesek@gmail.com','gxt661215@icloud.com'];
 emailjs.init({publicKey:EMAILJS_PUBLIC_KEY});
- 
+
 const PASSWORD='29944348';
 let pendingPage=null,pendingBtn=null;
- 
+
 // ── SAVE BANNER ──────────────────────────────────────────────
 let bannerTimer=null;
 function showBanner(type,msg){
@@ -374,7 +374,7 @@ function showBanner(type,msg){
 function dismissBanner(){
   document.getElementById('save-banner').classList.remove('show');
 }
- 
+
 // ── UNSAVED INDICATOR ────────────────────────────────────────
 let _hasUnsaved=false;
 function markUnsaved(){
@@ -386,12 +386,12 @@ function clearUnsaved(){
   _hasUnsaved=false;
   document.getElementById('unsaved-dot').classList.remove('visible');
 }
- 
+
 // ── DATA ─────────────────────────────────────────────────────
 const LETTERS=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','Done'];
 const PHONICS=Array.from({length:80},(_,i)=>String(i+1));
 const DAYS_ORDER=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
- 
+
 const DEFAULT_SCHEDULE=[
   {id:'s1',day:'Monday',time:'15:20–16:40'},
   {id:'s2',day:'Monday',time:'17:30–18:55'},
@@ -414,7 +414,7 @@ const DEFAULT_SCHEDULE=[
   {id:'s19',day:'Sunday',time:'16:40–18:05'},
   {id:'s20',day:'Sunday',time:'18:10–20:10'}
 ];
- 
+
 const STUDENT_NAMES=[
   'Lemon','Zeke','Slow Leo','Mai Mai','Sophia','Smart Leo','Ginny','Nemo',
   'Beta','Nick','Jack','Mark','Ryan','May','Wayne','Jerry','Kitty','X',
@@ -429,7 +429,7 @@ const DEFAULT_STUDENTS=STUDENT_NAMES.map((name,i)=>({
   id:'st_'+(i+1),name,balance:0,rate:0,history:[],createdAt:new Date().toISOString()
 }));
 function sid(name){const s=DEFAULT_STUDENTS.find(x=>x.name===name);return s?s.id:'';}
- 
+
 const DEFAULT_SEATS={
   's2':[sid('Lemon'),sid('Zeke'),sid('Slow Leo'),sid('Mai Mai')],
   's3':[sid('Sophia'),sid('Smart Leo'),sid('Ginny'),sid('Nemo')],
@@ -450,17 +450,17 @@ const DEFAULT_SEATS={
   's19':[sid('Cindy'),sid('Kyle'),sid('Small David'),''],
   's20':[sid('Big Elsa'),sid('Augustina'),sid('Alan'),sid('Big David')]
 };
- 
+
 let state={schedule:[],students:[],sessions:[],slotSeats:{},openSlots:{}};
 let earningsPeriod='day';
- 
+
 // ── SYNC GUARD ───────────────────────────────────────────────
 // We track whether WE just saved. If so, the incoming listener event is our
 // own write — ignore it so we don't clobber unsaved work.
 let _ourSaveTimestamp=0;
 let _listenerActive=false;
 let _ignoreNextUpdate=false;
- 
+
 // ── LOAD / SNAPSHOT ──────────────────────────────────────────
 // ── LOCAL BACKUP (localStorage) ──────────────────────────────
 // Saves a copy in the browser so data survives Firebase failures
@@ -481,7 +481,7 @@ function loadLocal(){
     return parsed.data||null;
   }catch(e){return null;}
 }
- 
+
 // ── FIREBASE PROMISE WITH TIMEOUT ────────────────────────────
 function withTimeout(promise, ms, label){
   return Promise.race([
@@ -489,7 +489,7 @@ function withTimeout(promise, ms, label){
     new Promise((_,reject)=>setTimeout(()=>reject(new Error(`${label} timed out after ${ms/1000}s`)),ms))
   ]);
 }
- 
+
 async function loadState(){
   try{
     const snapshot=await withTimeout(STATE_REF.once('value'), 15000, 'Load');
@@ -525,7 +525,7 @@ async function loadState(){
   checkScheduledReports();
   renderAll();
   requestAccess('tracker', document.querySelector('.nav-item'));
- 
+
   // Auto-save every 2 minutes if there are unsaved changes
   setInterval(()=>{
     if(_hasUnsaved){
@@ -533,7 +533,7 @@ async function loadState(){
       saveAll(true); // true = silent auto-save
     }
   }, 2 * 60 * 1000);
- 
+
   // Warn before closing tab with unsaved changes
   window.addEventListener('beforeunload', e=>{
     if(_hasUnsaved){
@@ -542,7 +542,7 @@ async function loadState(){
       return e.returnValue;
     }
   });
- 
+
   // Real-time listener — only applies remote updates from OTHER devices.
   if(!_listenerActive){
     _listenerActive=true;
@@ -553,7 +553,7 @@ async function loadState(){
     });
   }
 }
- 
+
 function applySnapshot(d){
   state.schedule=d.schedule&&d.schedule.length?d.schedule:DEFAULT_SCHEDULE;
   state.students=d.students&&d.students.length?d.students:DEFAULT_STUDENTS;
@@ -565,24 +565,47 @@ function applySnapshot(d){
   state.lastReportCheck=d.lastReportCheck||'';
   state.lastDailyReport=d.lastDailyReport||'';
 }
- 
+
+// ── SCREENSHOT PRUNING ───────────────────────────────────────
+// Keep screenshots ONLY on the most recent session per slot.
+// All older sessions get their screenshots cleared before saving.
+function pruneScreenshots(stateObj){
+  const slotLatest={};
+  // Find the most recent session per slot
+  stateObj.sessions.forEach(s=>{
+    if(!slotLatest[s.slotId]||s.createdAt>slotLatest[s.slotId].createdAt){
+      slotLatest[s.slotId]=s;
+    }
+  });
+  // Clear screenshots from all non-latest sessions
+  stateObj.sessions.forEach(s=>{
+    if(slotLatest[s.slotId]&&s.id!==slotLatest[s.slotId].id){
+      s.screenshots=[];
+    }
+  });
+}
+
 async function saveAll(silent=false){
   const btn=document.getElementById('main-save-btn');
   if(btn)btn.disabled=true;
   if(!silent) showBanner('saving','Saving your data...');
- 
+
   // Always save locally first - instant, never fails
   saveLocal(state);
- 
+
   try{
     // Backup existing Firebase data before overwrite (10s timeout)
     const prev=await withTimeout(STATE_REF.once('value'), 10000, 'Backup read');
     if(prev.exists()&&prev.val().sessions&&prev.val().sessions.length){
       await withTimeout(db.ref('fekTracker/backup').set(prev.val()), 10000, 'Backup write');
     }
+    // Prune screenshots from old sessions before saving
+    const stateToSave=JSON.parse(JSON.stringify(state));
+    pruneScreenshots(stateToSave);
+
     // Save to Firebase - 30 second timeout
     _ignoreNextUpdate=true;
-    await withTimeout(STATE_REF.set(state), 30000, 'Save');
+    await withTimeout(STATE_REF.set(stateToSave), 30000, 'Save');
     clearUnsaved();
     if(!silent) showBanner('success','Saved - all devices will sync');
     else showBanner('success','Auto-saved');
@@ -600,9 +623,9 @@ async function saveAll(silent=false){
     if(btn)btn.disabled=false;
   }
 }
- 
- 
- 
+
+
+
 function toggleSidebar(){
   document.querySelector('.sidebar').classList.toggle('open');
   document.getElementById('sidebar-overlay').classList.toggle('open');
@@ -611,7 +634,7 @@ function closeSidebar(){
   document.querySelector('.sidebar').classList.remove('open');
   document.getElementById('sidebar-overlay').classList.remove('open');
 }
- 
+
 async function revertAll(){
   let backupExists=false;
   try{
@@ -639,7 +662,7 @@ async function revertAll(){
     }catch(e){showBanner('error','Revert failed');}
   }
 }
- 
+
 function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
@@ -650,16 +673,16 @@ function showPage(id,btn){
   if(id==='students')renderStudents();
   closeSidebar();
 }
- 
+
 function renderAll(){renderTracker();renderStudents();renderSchedule();}
- 
+
 function sortedSchedule(){
   return [...state.schedule].sort((a,b)=>{
     const di=DAYS_ORDER.indexOf(a.day)-DAYS_ORDER.indexOf(b.day);
     return di!==0?di:a.time.localeCompare(b.time);
   });
 }
- 
+
 // ── TRACKER ──────────────────────────────────────────────────
 function renderTracker(){
   const root=document.getElementById('tracker-root');
@@ -672,7 +695,7 @@ function renderTracker(){
   }).join('');
   attachPasteListeners();
 }
- 
+
 function renderSlotCard(slot){
   const seats=state.slotSeats[slot.id]||['','','',''];
   const assigned=seats.filter(x=>x).map(id=>state.students.find(s=>s.id===id)).filter(Boolean);
@@ -681,14 +704,14 @@ function renderSlotCard(slot){
   const pips=assigned.map(s=>`<span class="student-pip">${s.name}</span>`).join('');
   const sortedSessions=[...sessions].sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
   const seatOpts=`<option value="">— empty —</option>`+state.students.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
- 
+
   // Build sessions HTML — first one visible, rest hidden
   let sessHtml='';
   sortedSessions.forEach((s,i)=>{
     const hidden=i>0;
     sessHtml+=`<div class="${hidden?'session-hidden':''}" id="sesswrap-${s.id}">${renderSessionCard(s,slot)}</div>`;
   });
- 
+
   // Show-more button
   const hiddenCount=sortedSessions.length-1;
   const showMoreHtml=hiddenCount>0
@@ -696,7 +719,7 @@ function renderSlotCard(slot){
         ▾ Show ${hiddenCount} older session${hiddenCount>1?'s':''}
        </button>`
     : '';
- 
+
   return `<div class="slot-card" id="slotcard-${slot.id}">
     <div class="slot-header" onclick="toggleSlot('${slot.id}')">
       <div class="slot-info">
@@ -725,7 +748,7 @@ function renderSlotCard(slot){
     </div>
   </div>`;
 }
- 
+
 function toggleShowMore(slotId, hiddenCount){
   const btn=document.getElementById('showmore-'+slotId);
   const isOpen=btn.dataset.open==='1';
@@ -739,7 +762,7 @@ function toggleShowMore(slotId, hiddenCount){
     ? `▾ Show ${hiddenCount} older session${hiddenCount>1?'s':''}`
     : `▴ Hide older sessions`;
 }
- 
+
 // ── SESSION SUMMARY (collapsed header) ───────────────────────
 function buildSessionSummary(s){
   const type=s.sessionType||'letters';
@@ -749,17 +772,16 @@ function buildSessionSummary(s){
   } else if(s.letters&&s.letters.length){
     contentLabel='Letter '+s.letters.join(', ');
   }
-  const attCount=(s.attendance||[]).length;
   const dateLabel=s.date||'No date';
-  return {dateLabel,contentLabel,attCount};
+  return {dateLabel,contentLabel};
 }
- 
+
 // ── CONTENT FIELDS — both types always visible, click to activate ──
 function renderContentFields(s){
   const type=s.sessionType||'letters';
   const letters=s.letters||[];
   const packs=s.phonicPacks||[];
- 
+
   // Letters side — show slots for filled + 1 empty, max 2 (A-Z + Done)
   const lCount=Math.min(2,Math.max(1,letters.filter(x=>x).length+1));
   const letterFields=Array.from({length:lCount},(_,i)=>`
@@ -769,7 +791,7 @@ function renderContentFields(s){
         <option value="">—</option>${LETTERS.map(l=>`<option value="${l}"${(letters[i]||'')===l?' selected':''}>${l}</option>`).join('')}
       </select>
     </div>`).join('');
- 
+
   // Phonics side — show slots for filled + 1 empty, max 3
   const pCount=Math.min(3,Math.max(1,packs.filter(x=>x).length+1));
   const phonicsFields=Array.from({length:pCount},(_,i)=>`
@@ -779,7 +801,7 @@ function renderContentFields(s){
         <option value="">—</option>${PHONICS.map(n=>`<option value="${n}"${(packs[i]||'')===n?' selected':''}>${n}</option>`).join('')}
       </select>
     </div>`).join('');
- 
+
   return `
     <div class="content-row">
       <div class="content-col ${type==='letters'?'active-type':'inactive-type'}" id="col-letters-${s.id}" onclick="activateType('${s.id}','letters')">
@@ -793,7 +815,7 @@ function renderContentFields(s){
       </div>
     </div>`;
 }
- 
+
 function activateType(sid, type){
   const s=state.sessions.find(x=>x.id===sid);
   if(!s) return;
@@ -805,7 +827,7 @@ function activateType(sid, type){
   if(lCol){lCol.className='content-col '+(type==='letters'?'active-type':'inactive-type');}
   if(pCol){pCol.className='content-col '+(type==='phonics'?'active-type':'inactive-type');}
 }
- 
+
 function onLetterChange(sid,idx,value){
   const s=state.sessions.find(x=>x.id===sid);
   if(!s) return;
@@ -818,7 +840,7 @@ function onLetterChange(sid,idx,value){
   refreshContentFields(sid);
   refreshSessionSummary(sid);
 }
- 
+
 function onPhonicsChange(sid,idx,value){
   const s=state.sessions.find(x=>x.id===sid);
   if(!s) return;
@@ -831,25 +853,23 @@ function onPhonicsChange(sid,idx,value){
   refreshContentFields(sid);
   refreshSessionSummary(sid);
 }
- 
+
 function refreshContentFields(sid){
   const s=state.sessions.find(x=>x.id===sid);
   const el=document.getElementById('contentfields-'+sid);
   if(s&&el) el.innerHTML=renderContentFields(s);
 }
- 
+
 function refreshSessionSummary(sid){
   const s=state.sessions.find(x=>x.id===sid);
   if(!s) return;
-  const {dateLabel,contentLabel,attCount}=buildSessionSummary(s);
+  const {dateLabel,contentLabel}=buildSessionSummary(s);
   const cpill=document.getElementById('spill-content-'+sid);
-  const apill=document.getElementById('spill-att-'+sid);
   const dlabel=document.getElementById('spill-date-'+sid);
   if(cpill) cpill.textContent=contentLabel||'No content';
-  if(apill) apill.textContent=attCount+' student'+(attCount!==1?'s':'');
   if(dlabel) dlabel.textContent=dateLabel;
 }
- 
+
 // ── PRESET LOGIC ─────────────────────────────────────────────
 // Given a slot, find the most recent session and compute next preset
 function getPresetForSlot(slotId){
@@ -864,7 +884,7 @@ function getPresetForSlot(slotId){
     phonicPacks: [],
     attendance: [...(last.attendance||[])] // copy same students
   };
- 
+
   if(last.sessionType==='phonics'&&last.phonicPacks&&last.phonicPacks.length){
     // Increment each pack number by the count of packs used last time
     const step=last.phonicPacks.length;
@@ -883,10 +903,10 @@ function getPresetForSlot(slotId){
       return LETTERS[Math.min(idx+1, LETTERS.length-1)]||'';
     }).filter(x=>x);
   }
- 
+
   return preset;
 }
- 
+
 // ── RENDER SESSION CARD ───────────────────────────────────────
 function renderSessionCard(s,slot){
   const seats=state.slotSeats[slot.id]||['','','',''];
@@ -895,7 +915,7 @@ function renderSessionCard(s,slot){
       <img src="${src}" alt="ss">
       <button class="screenshot-del" onclick="event.stopPropagation();deleteScreenshot('${s.id}',${i})">×</button>
     </div>`).join('');
- 
+
   const attCells=seats.map(stId=>{
     if(!stId) return`<div class="att-cell empty"><span class="att-name">Empty</span></div>`;
     const st=state.students.find(x=>x.id===stId);
@@ -906,17 +926,16 @@ function renderSessionCard(s,slot){
       <span class="att-name">${st.name}</span>
     </div>`;
   }).join('');
- 
-  const {dateLabel,contentLabel,attCount}=buildSessionSummary(s);
+
+  const {dateLabel,contentLabel}=buildSessionSummary(s);
   const isOpen=s._open||false;
- 
+
   return`<div class="session-card" id="sess-${s.id}">
     <!-- Collapsed summary row -->
     <div class="session-summary" onclick="toggleSessionDetail('${s.id}')">
       <div class="session-summary-left">
         <span class="session-date-badge" id="spill-date-${s.id}">${dateLabel}</span>
         ${contentLabel?`<span class="session-content-pill" id="spill-content-${s.id}">${contentLabel}</span>`:`<span class="session-content-pill" id="spill-content-${s.id}" style="background:var(--surface2);color:var(--text3)">No content</span>`}
-        <span class="session-att-pill" id="spill-att-${s.id}">${attCount} student${attCount!==1?'s':''}</span>
       </div>
       <span class="session-expand-btn ${isOpen?'open':''}">▼</span>
     </div>
@@ -952,7 +971,7 @@ function renderSessionCard(s,slot){
     </div>
   </div>`;
 }
- 
+
 function toggleSessionDetail(sid){
   const detail=document.getElementById('sessdetail-'+sid);
   const btn=document.querySelector(`#sess-${sid} .session-expand-btn`);
@@ -962,7 +981,7 @@ function toggleSessionDetail(sid){
   if(s) s._open=isOpen;
   if(btn) btn.classList.toggle('open',isOpen);
 }
- 
+
 function toggleSlot(slotId){
   state.openSlots[slotId]=!state.openSlots[slotId];
   const body=document.getElementById('slotbody-'+slotId);
@@ -971,7 +990,7 @@ function toggleSlot(slotId){
   if(body) body.classList.toggle('open',state.openSlots[slotId]);
   if(chev) chev.classList.toggle('open',state.openSlots[slotId]);
 }
- 
+
 function updateSeat(slotId,idx,studentId){
   if(!state.slotSeats[slotId]) state.slotSeats[slotId]=['','','',''];
   state.slotSeats[slotId][idx]=studentId;
@@ -983,7 +1002,7 @@ function updateSeat(slotId,idx,studentId){
     preview.innerHTML=assigned.map(s=>`<span class="student-pip">${s.name}</span>`).join('')||'<span style="font-size:11px;color:var(--text3)">No students assigned</span>';
   }
 }
- 
+
 function addSession(slotId){
   const preset=getPresetForSlot(slotId);
   const s={
@@ -1019,13 +1038,13 @@ function addSession(slotId){
     }
   }
 }
- 
+
 function updateSession(sid,field,val){
   const s=state.sessions.find(x=>x.id===sid);
   if(s) s[field]=val;
   markUnsaved();
 }
- 
+
 function toggleAttendanceCell(sid,studentId){
   const cell=document.getElementById(`attcell-${sid}-${studentId}`);
   if(!cell) return;
@@ -1034,7 +1053,7 @@ function toggleAttendanceCell(sid,studentId){
   cb.checked=!cb.checked;
   toggleAttendance(sid,studentId,cb.checked);
 }
- 
+
 function toggleAttendance(sid,studentId,checked){
   const s=state.sessions.find(x=>x.id===sid);
   if(!s) return;
@@ -1049,7 +1068,7 @@ function toggleAttendance(sid,studentId,checked){
   const balEl=document.getElementById('bal-'+studentId);
   if(balEl){const st=state.students.find(x=>x.id===studentId);if(st){balEl.textContent=st.balance||0;balEl.className='balance-val '+((st.balance||0)<=2?'low':(st.balance||0)>=6?'ok':'');}}
 }
- 
+
 function deductLesson(studentId,date){
   const st=state.students.find(x=>x.id===studentId);
   if(!st) return;
@@ -1062,7 +1081,7 @@ function addLessonBack(studentId){
   st.balance=(st.balance||0)+1;
   (st.history=st.history||[]).unshift({type:'undo',desc:'Attendance removed',change:+1,date:new Date().toISOString().split('T')[0]});
 }
- 
+
 function deleteSession(sid){
   const s=state.sessions.find(x=>x.id===sid);
   if(!s) return;
@@ -1073,7 +1092,7 @@ function deleteSession(sid){
   if(wrapper) wrapper.remove();
   else{const el=document.getElementById('sess-'+sid);if(el)el.remove();}
 }
- 
+
 function handleFiles(sid,input){Array.from(input.files).forEach(f=>loadImageFile(f,sid));input.value='';}
 function handleDrop(e,sid){e.preventDefault();document.getElementById('pastezone-'+sid).classList.remove('drag-over');Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/')).forEach(f=>loadImageFile(f,sid));}
 function loadImageFile(file,sid){
@@ -1093,7 +1112,7 @@ function loadImageFile(file,sid){
   };
   r.readAsDataURL(file);
 }
- 
+
 function addScreenshot(sid,dataUrl){
   const s=state.sessions.find(x=>x.id===sid);
   if(!s) return;
@@ -1109,7 +1128,7 @@ function addScreenshot(sid,dataUrl){
     container.appendChild(div);
   }
 }
- 
+
 function deleteScreenshot(sid,idx){
   const s=state.sessions.find(x=>x.id===sid);
   if(!s) return;
@@ -1118,7 +1137,7 @@ function deleteScreenshot(sid,idx){
   const c=document.getElementById('thumbs-'+sid);
   if(c){const t=c.querySelectorAll('.screenshot-thumb');if(t[idx])t[idx].remove();}
 }
- 
+
 function attachPasteListeners(){
   if(window._pasteAttached) return;
   window._pasteAttached=true;
@@ -1141,10 +1160,10 @@ function attachPasteListeners(){
     }
   });
 }
- 
+
 function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
- 
+
 // ── STUDENTS ─────────────────────────────────────────────────
 function renderStudents(){
   const root=document.getElementById('students-root');
@@ -1179,7 +1198,7 @@ function renderStudents(){
     </div>`;
   }).join('')+`<button class="btn-add-card" onclick="openAddStudent()">+ Add student</button>`;
 }
- 
+
 function toggleHistory(stId){
   const list=document.getElementById('hist-'+stId);
   const arrow=document.getElementById('hist-arrow-'+stId);
@@ -1246,7 +1265,7 @@ function deleteStudent(stId){
   markUnsaved();
   renderStudents();renderTracker();
 }
- 
+
 // ── EARNINGS ─────────────────────────────────────────────────
 function setPeriod(p,btn){
   earningsPeriod=p;
@@ -1282,7 +1301,7 @@ function renderEarnings(){
   const tbody=document.getElementById('earnings-body');
   if(tbody) tbody.innerHTML=rows.length?rows.map(r=>`<tr><td>${r.date}</td><td>${r.student}</td><td style="color:var(--text2)">${r.slot}</td><td>${Number(r.rate).toFixed(2)}</td></tr>`).join(''):`<tr><td colspan="4" style="text-align:center;color:var(--text3);padding:24px">No data for this period</td></tr>`;
 }
- 
+
 // ── SCHEDULE ─────────────────────────────────────────────────
 function renderSchedule(){
   const tbody=document.getElementById('schedule-body');
@@ -1319,7 +1338,7 @@ function deleteSlot(slotId){
 }
 function openModal(){document.getElementById('modal-overlay').classList.add('open');}
 function closeModal(){document.getElementById('modal-overlay').classList.remove('open');}
- 
+
 // ── PASSWORD ─────────────────────────────────────────────────
 function requestAccess(pageId,btn){
   pendingPage=pageId;pendingBtn=btn;
@@ -1339,7 +1358,7 @@ function checkPassword(){
   }
 }
 function closePwOverlay(){document.getElementById('pw-overlay').classList.remove('open');}
- 
+
 // ── MIGRATE OLD SESSION FORMAT ────────────────────────────────
 function migrateSession(s){
   if(!s.letters){
@@ -1357,7 +1376,7 @@ function migrateSession(s){
   if(!s.sessionType) s.sessionType=s.phonicPacks.length>0?'phonics':'letters';
   return s;
 }
- 
+
 // ── SCHEDULED REPORTS ─────────────────────────────────────────
 function checkScheduledReports(){
   // Disabled in browser — handled by GitHub Actions / send-report.js
@@ -1424,7 +1443,7 @@ function sendReport(period){
     }).catch(e=>console.error('Report failed:',e));
   });
 }
- 
+
 // ── BOOT ─────────────────────────────────────────────────────
 loadState();
 </script>
