@@ -590,23 +590,24 @@ async function saveAll(silent=false){
   if(btn)btn.disabled=true;
   if(!silent) showBanner('saving','Saving your data...');
 
-  // Always save locally first - instant, never fails
+  // Always save locally first — instant, never fails
   saveLocal(state);
 
   try{
-    // Backup existing Firebase data before overwrite (10s timeout)
-    const prev=await withTimeout(STATE_REF.once('value'), 10000, 'Backup read');
-    if(prev.exists()&&prev.val().sessions&&prev.val().sessions.length){
-      await withTimeout(db.ref('fekTracker/backup').set(prev.val()), 10000, 'Backup write');
-    }
-    // Prune screenshots from old sessions before saving
     const stateToSave=JSON.parse(JSON.stringify(state));
     pruneScreenshots(stateToSave);
 
-    // Save to Firebase - 30 second timeout
     _ignoreNextUpdate=true;
     await withTimeout(STATE_REF.set(stateToSave), 30000, 'Save');
     clearUnsaved();
+
+    // Backup AFTER successful save — fire and forget, don't await
+    STATE_REF.once('value').then(prev=>{
+      if(prev.exists()&&prev.val().sessions&&prev.val().sessions.length){
+        db.ref('fekTracker/backup').set(prev.val()).catch(()=>{});
+      }
+    }).catch(()=>{});
+
     if(!silent) showBanner('success','Saved - all devices will sync');
     else showBanner('success','Auto-saved');
   } catch(e){
@@ -623,7 +624,6 @@ async function saveAll(silent=false){
     if(btn)btn.disabled=false;
   }
 }
-
 
 
 function toggleSidebar(){
